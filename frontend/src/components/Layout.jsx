@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
         
         <Navbar />
 
-        <main className="relative mx-auto px-6 pt-16 pb-20 z-10">
+        <main className="relative mx-auto px-6 pb-20 z-10">
             {children}
         </main>
     </div>

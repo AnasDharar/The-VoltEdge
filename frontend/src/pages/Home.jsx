@@ -69,8 +69,8 @@ function Home() {
 
   return (
     <>
-        <div className="relative text-center mb-12 z-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 tracking-tight">
+        <div className="relative text-center mb-8 z-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 tracking-tight pt-12">
             Your Digital Electronics Companion
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
