@@ -1,49 +1,59 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 border-b border-slate-200 bg-white/80 backdrop-blur-[10px] z-50 left-0 w-full px-6 py-4">
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          {/* <img src="" alt="Logo" className='w-6 h-6 border border-black rounded-full' /> */}
-          <span className="font-bold text-md md:text-xl tracking-tight text-slate-900">The VoltEdge</span>
-        </Link>
+    <div className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <nav className="w-full max-w-[95%] md:max-w-5xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl md:rounded-full px-4 py-3 md:px-6 md:py-3 flex justify-between items-center transition-all duration-300">
         
-        {/* Desktop Menu */}
-        <div className='hidden md:flex gap-8'>
-          <div className="text-[12px] md:text-md font-medium text-slate-500 hover:text-blue-600 cursor-pointer">
-            About
-          </div>
-          <div className="text-[12px] md:text-md font-medium text-slate-500 hover:text-blue-600 cursor-pointer">
-            Contact Us
-          </div>
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2.5 group">
+           <div className="p-2 bg-slate-900 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-slate-900/20">
+              <Zap size={18} className="text-white fill-white" />
+           </div>
+           <span className="font-bold text-lg text-slate-900 tracking-tight">VoltEdge</span>
+        </Link>
+
+        {/* Desktop Links - Pill Style */}
+        <div className="hidden md:flex items-center gap-2">
+            {[
+              { name: 'Tools', path: '/' },
+              { name: 'About', path: '/about' },
+              { name: 'Contact', path: '/contact' }
+            ].map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                className="px-4 py-2 rounded-full text-sm font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 transition-all duration-300"
+              >
+                {link.name}
+              </Link>
+            ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          className="md:hidden p-2.5 text-slate-900 bg-slate-50 rounded-full hover:bg-slate-100 transition-colors border border-slate-100"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg py-4 px-6 flex flex-col gap-4 animate-in slide-in-from-top-2">
-          <div className="text-sm font-medium text-slate-600 hover:text-blue-600 cursor-pointer py-2 border-b border-slate-100">
-            About
-          </div>
-          <div className="text-sm font-medium text-slate-600 hover:text-blue-600 cursor-pointer py-2">
-            Contact Us
-          </div>
+        <div className="absolute top-full right-4 mt-2 w-48 bg-white/90 backdrop-blur-xl rounded-2xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 flex flex-col gap-1 animate-in slide-in-from-top-2 fade-in duration-200 origin-top-right">
+           {['Tools', 'About', 'Contact'].map((item) => (
+             <div key={item} className="px-4 py-3 hover:bg-slate-50 rounded-xl font-medium text-sm text-slate-600 cursor-pointer transition-colors text-left">
+                {item}
+             </div>
+           ))}
         </div>
       )}
-    </nav>
+    </div>
   );
 };
 

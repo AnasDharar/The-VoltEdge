@@ -5,7 +5,10 @@ import {
   Table,
   Ampersands,
   Binary, 
-  Search, 
+  Search,
+  Cpu,
+  ArrowRight,
+  Zap
 } from 'lucide-react';
 
 function Home() {
@@ -16,7 +19,7 @@ function Home() {
     {
       id: 'kmap',
       title: 'K-Map Solver',
-      desc: 'Simplify boolean expressions with SOP and POS methods.',
+      desc: 'Simplify boolean expressions using Karnaugh maps with SOP and POS support.',
       icon: <Grid3x3 className="w-8 h-8 text-blue-600" />,
       tag: 'Logic',
       path: '/kmap'
@@ -24,7 +27,7 @@ function Home() {
     {
       id: 'truthtable',
       title: 'Truth Table Generator',
-      desc: 'Generate tables from boolean expressions.',
+      desc: 'Generate complete truth tables instantly from any boolean expression.',
       icon: <Table className="w-8 h-8 text-emerald-600" />,
       tag: 'Logic',
       path: '/truthtable'
@@ -32,7 +35,7 @@ function Home() {
     {
       id: 'converter',
       title: 'Base Converter',
-      desc: 'Hex, Binary, Decimal, Octal translator.',
+      desc: 'Seamlessly translate between Hex, Binary, Decimal, and Octal formats.',
       icon: <Binary className="w-8 h-8 text-orange-600" />,
       tag: 'Math',
       path: '/converter'
@@ -40,15 +43,15 @@ function Home() {
     {
       id: 'gates',
       title: 'Logic Gates Minimizer',
-      desc: "Solve and understand basic logic gates.",
+      desc: "Analyze and minimize basic logic gate circuits for efficiency.",
       icon: <Ampersands className="w-8 h-8 text-red-600" />,
       tag: 'Circuits',
       path: '/gates'
     },
     {
         id: '1',
-        title: 'Resistor Color Code Calculator',
-        desc: 'Calculate resistance values based on color bands.',
+        title: 'Resistor Calculator',
+        desc: 'Calculate resistance values with precision based on color bands.',
         icon: <Grid3x3 className="w-8 h-8 text-yellow-600" />,
         tag: 'Components',
         path: '/resistor'
@@ -56,8 +59,9 @@ function Home() {
     {
         id: '2',
         title: 'Logic Gate Simulator',
-        desc: 'Simulate and visualize logic gate operations.',
+        desc: 'Interactive simulator to visualize and test your logic gate designs.',
         icon: <Ampersands className="w-8 h-8 text-purple-600" />,
+        tag: 'Simulation',
         path: '/gatessimulator',
     }
   ];
@@ -68,55 +72,61 @@ function Home() {
   );
 
   return (
-    <>
-        <div className="relative text-center mb-8 z-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 tracking-tight pt-12">
+    <div className="pt-8 max-w-6xl mx-auto px-4">
+
+        {/* Hero Section */}
+        <div className="text-center mb-20 md:mb-18">
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
             Your Digital Electronics Companion
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Instant tools for digital logic, conversions, etc. for electronics students
+          <p className="text-slate-500 text-lg font-medium mb-6">
+            Instant tools for electronics students, professionals and enthusiasts.
           </p>
-        </div>
-
-        <div className="max-w-md mx-auto mb-16 relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-slate-400" />
+          <div id="tools-section" className="max-w-xl mx-auto relative group z-20">
+              <div className="relative flex items-center bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-2 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+                <Search className="ml-4 h-5 w-5 text-slate-400 shrink-0" />
+                <input
+                    type="text"
+                    className="w-full pl-3 pr-4 py-3 bg-transparent outline-none text-slate-700 placeholder-slate-400 text-base"
+                    placeholder="Search tools..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-slate-800 transition-colors shrink-0">
+                    Search
+                </button>
+              </div>
           </div>
-          <input
-            type="text"
-            className="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm"
-            placeholder="Search tools..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
         </div>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
+        {/* Grid */}
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
           {filteredTools.map((tool) => (
             <div 
               key={tool.id}
-              className="group bg-white rounded-xl border border-slate-200 p-4 md:p-6 hover:shadow-lg hover:border-neutral-800 transition-all duration-200 cursor-pointer flex flex-col justify-between md:min-h-48"
+              className="group bg-white rounded-3xl border border-slate-200 p-6 hover:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:border-slate-900 hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col justify-between relative overflow-hidden"
               onClick={() => navigate(tool.path)}
             >
-              <div className='flex md:flex-col gap-4 items-center'>
-                <div className="flex justify-between items-start mb-4">
-                  <div className="bg-slate-50 rounded-lg group-hover:bg-blue-50 transition-colors">
+              <div className='flex gap-5 items-center z-10 relative'>
+                <div className="shrink-0">
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 group-hover:bg-blue-50 transition-colors duration-300">
                     {tool.icon}
                   </div>
                 </div>
-                <div className='flex flex-col'>
-                <h3 className="text-md font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                  {tool.title}
-                </h3>
-                <p className="text-[12px] text-slate-500">
-                  {tool.desc}
-                </p>
+                <div className='flex flex-col text-left'>
+                  <h3 className="text-xl font-bold text-slate-900 transition-colors mb-2 tracking-tight">
+                    {tool.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                    {tool.desc}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-    </>
+    </div>
   )
 }
 

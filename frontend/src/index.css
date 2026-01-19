@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap');
 @import "tailwindcss";
 
 @keyframes ball1 {
@@ -20,5 +20,5 @@
 @theme {
     --animate-ball1: ball1 40s ease-in-out infinite;
     --animate-ball2: ball2 45s ease-in-out infinite; 
-    --font-sora: 'Sora', sans-serif;
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
 }
