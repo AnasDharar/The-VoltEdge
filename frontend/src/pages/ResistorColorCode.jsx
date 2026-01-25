@@ -1,5 +1,6 @@
 import React from 'react';
 import { Ampersands } from 'lucide-react';
+import ResistorCalculator from '../components/resistorColor/ResistorCalculator';
 
 const ResistorColorCode = () => {
   return (
@@ -14,9 +15,7 @@ const ResistorColorCode = () => {
         </div>
       </div>
       
-      <div className="border-2 border-dashed border-slate-200 rounded-xl p-12 text-center bg-slate-50">
-        <p className="text-slate-400">Resistor Color Code Calculator inputs and result table will be displayed here.</p>
-      </div>
+      <ResistorCalculator />
     </div>
   );
 };
