@@ -36,8 +36,7 @@ const Navbar = () => {
                 {[
                   { name: 'Tools', path: '/' },
                   { name: 'Blogs', path: '/blog' },
-                  { name: 'About', path: '/about' },
-                  { name: 'Contact', path: '/contact' }
+                  { name: 'About', path: '/about' }
                 ].map((link) => (
                   <Link 
                     key={link.name} 
@@ -78,7 +77,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="absolute top-full right-4 mt-2 w-64 bg-white/90 backdrop-blur-xl rounded-2xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 flex flex-col gap-1 animate-in slide-in-from-top-2 fade-in duration-200 origin-top-right">
-           {['Tools', 'About', 'Contact'].map((item) => (
+           {['Tools', 'About'].map((item) => (
              <div key={item} className="px-4 py-3 hover:bg-slate-50 rounded-xl font-medium text-sm text-slate-600 cursor-pointer transition-colors text-left">
                 {item}
              </div>

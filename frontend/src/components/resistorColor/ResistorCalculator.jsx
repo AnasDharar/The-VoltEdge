@@ -42,12 +42,6 @@ const ResistorCalculator = () => {
   }, [selections, numBands]);
 
   const calculateResistance = () => {
-    // Get values based on current selections
-    // band selections store the numeric 'value' or 'multiplier' or 'tolerance' directly helps? 
-    // Or stick to indices/Color Names? Storing values directly is easier if unique, but 'value' 0 vs 'multiplier' 1 (Black/Black)
-    // Let's assume selections state holds the VALUES we need to compute.
-    // Actually, let's store indices or easier, the color objects, or just the values.
-    // Let's store the values directly in state for bands.
     
     let resistance = 0;
     
@@ -114,52 +108,7 @@ const ResistorCalculator = () => {
           >
             5 Bands
           </button>
-        </div>
-      </div>
-
-      {/* Visual Resistor Representation */}
-      <div className="flex justify-center items-center py-12 bg-slate-50 rounded-xl border border-slate-100 mb-4 overflow-hidden">
-        <div className="relative flex items-center">
-            {/* Wire Left */}
-            <div className="w-16 h-2 bg-gray-400"></div>
-            
-            {/* Resistor Body */}
-            <div className="flex items-center bg-[#E6D7B6] h-24 px-4 rounded-full relative shadow-inner gap-4 border-t-4 border-b-4 border-[#d4c39c]">
-                
-                {/* Bands */}
-                <div 
-                    className="w-4 h-24" 
-                    style={{ backgroundColor: COLORS.find(c => c.value === selections.band1)?.hex }}
-                ></div>
-                <div 
-                    className="w-4 h-24" 
-                    style={{ backgroundColor: COLORS.find(c => c.value === selections.band2)?.hex }}
-                ></div>
-                
-                {numBands === 5 && (
-                    <div 
-                        className="w-4 h-24" 
-                        style={{ backgroundColor: COLORS.find(c => c.value === selections.band3)?.hex }}
-                    ></div>
-                )}
-                
-                <div 
-                    className="w-4 h-24" 
-                    style={{ backgroundColor: COLORS.find(c => c.multiplier === selections.multiplier)?.hex }}
-                ></div>
-
-                {/* Spacer for reading direction standard is gap before tolerance */}
-                <div className="w-8"></div> 
-                
-                <div 
-                    className="w-4 h-24" 
-                    style={{ backgroundColor: COLORS.find(c => c.tolerance === selections.tolerance)?.hex }}
-                ></div>
-
-            </div>
-            
-            {/* Wire Right */}
-            <div className="w-16 h-2 bg-gray-400"></div>
+      
         </div>
       </div>
 
@@ -172,7 +121,7 @@ const ResistorCalculator = () => {
       </div>
 
       {/* Controls */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${numBands === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-5'}`}>
           
           <ColorSelect 
             label="Band 1" 

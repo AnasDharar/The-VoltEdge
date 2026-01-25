@@ -9,6 +9,8 @@ import BaseConverter from './pages/BaseConverter';
 import LogicGatesMinimizer from './pages/LogicGatesMinimizer';
 import ResistorColorCodeCalculator from './pages/ResistorColorCode';
 import LogicGateSimulator from './pages/GateSimulator';
+import Blog from './pages/Blog';
+import About from './pages/About';
 import './App.css';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<About />} />
           <Route path="/kmap" element={<KMapSolver />} />
           <Route path="/truthtable" element={<TruthTableGenerator />} />
           <Route path="/converter" element={<BaseConverter />} />
