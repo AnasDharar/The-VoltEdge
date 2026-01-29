@@ -89,14 +89,11 @@ function Home() {
                 <Search className="ml-4 h-5 w-5 text-slate-400 shrink-0" />
                 <input
                     type="text"
-                    className="w-full pl-3 pr-4 py-3 bg-transparent outline-none text-slate-700 placeholder-slate-400 text-base"
+                    className="w-full pl-3 pr-4 py-3 bg-transparent outline-none text-slate-700 placeholder-slate-500 text-base"
                     placeholder="Search tools..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-slate-800 transition-colors shrink-0">
-                    Search
-                </button>
               </div>
           </div>
         </div>
